@@ -12,6 +12,8 @@ export default function Logo(props: LogoProps) {
         ...svgProps
     } = props
 
+    console.log(colored, variant)
+
     return (
         <svg 
             width="250" 
