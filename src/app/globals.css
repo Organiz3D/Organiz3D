@@ -1,26 +1,78 @@
 @import "tailwindcss";
-
-:root {
-  --background: #F5F8FF;
-  --foreground: #161F2F;
+@plugin "daisyui" {
+  themes: organiz3d_light --default, organiz3d_dark --prefersdark;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #161F2F;
-    --foreground: #F5F8FF;
-  }
+@plugin "daisyui/theme" {
+  name: "organiz3d_light";
+  default: true;
+  prefersdark: false;
+  color-scheme: "light";
+
+  --color-base-100: #F5F8FF;
+  --color-base-200: #DDE3F3;
+  --color-base-300: #C6CDDE;
+  --color-base-content: #161F2F;
+
+  --color-primary: #2F80ED;
+  --color-primary-content: #F5F8FF;
+  --color-secondary: #56CCF2;
+  --color-secondary-content: #161F2F;
+  --color-accent: #FF6B81;
+  --color-accent-content: #F5F8FF;
+  --color-neutral: #E6ECF7;
+  --color-neutral-content: #161F2F;
+
+  --color-info: #2D9CDB;
+  --color-info-content: #F5F8FF;
+  --color-success: #27AE60;
+  --color-success-content: #F5F8FF;
+  --color-warning: #E2B100;
+  --color-warning-content: #161F2F;
+  --color-error: #D14343;
+  --color-error-content: #F5F8FF;
+
+  --radius-selector: 2rem;
+  --radius-field: 2rem;
+  --radius-box: 2rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 2px;
+  --depth: 0;
+  --noise: 0;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-rubik: var(--font-rubik)
-}
-
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@plugin "daisyui/theme" {
+  name: "organiz3d_dark";
+  default: false;
+  prefersdark: true;
+  color-scheme: "dark";
+  --color-base-100: #161F2F;
+  --color-base-200: #0F1621;
+  --color-base-300: #090D13;
+  --color-base-content: #F5F8FF;
+  --color-primary: #2F80ED;
+  --color-primary-content: #F5F8FF;
+  --color-secondary: #56CCF2;
+  --color-secondary-content: #F5F8FF;
+  --color-accent: #FF6B81;
+  --color-accent-content: #F5F8FF;
+  --color-neutral: #1E283A;
+  --color-neutral-content: #F5F8FF;
+  --color-info: #3ABFF8;
+  --color-info-content: #F5F8FF;
+  --color-success: #22C55E;
+  --color-success-content: #F5F8FF;
+  --color-warning: #FBBF24;
+  --color-warning-content: #F5F8FF;
+  --color-error: #EF4444;
+  --color-error-content: #F5F8FF;
+  --radius-selector: 2rem;
+  --radius-field: 2rem;
+  --radius-box: 2rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 2px;
+  --depth: 0;
+  --noise: 0;
 }
