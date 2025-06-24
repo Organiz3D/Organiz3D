@@ -37,7 +37,7 @@ export default function Home() {
     >
       <ul className="flex flex-col gap-[16px] ">
         { links.map((link) => (
-          <li>
+          <li key={link.text}>
             <a 
               className={clsx(
                 "btn btn-block btn-primary",
