@@ -1,0 +1,5 @@
+tabWidth: 4
+semicolons: false
+quoteProps: "preserve"
+trailingComma: "all"
+bracketSpacing: true
