@@ -31,14 +31,14 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`${rubik.variable} antialiased min-h-screen w-[400px] py-10 m-auto bg-base-100 text-base-content flex flex-col justify-between`}
+                className={`${rubik.variable} antialiased min-h-screen w-full sm:w-[500px] max-w-[500px] px-10 py-10 m-auto bg-base-100 text-base-content flex flex-col justify-between`}
             >
                 <header>
                     <h1 className="sr-only">Organiz3d</h1>
                     <Logo
                         variant="vertical"
                         colored
-                        className="w-[300px] mx-auto"
+                        className="w-full sm:w-[300px] max-w-[300px] mx-auto"
                     />
                 </header>
                 <main>{children}</main>
