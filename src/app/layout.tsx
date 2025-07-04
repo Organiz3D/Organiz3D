@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { rubik } from "@/app/fonts";
 import Logo from "@/components/Logo";
@@ -18,6 +18,11 @@ export const metadata: Metadata = {
     },
 };
 
+export const viewport: Viewport = {
+    width: "device-width",
+    initialScale: 1,
+};
+
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -30,7 +35,11 @@ export default function RootLayout({
             >
                 <header>
                     <h1 className="sr-only">Organiz3d</h1>
-                    <Logo variant="vertical" colored className="w-full" />
+                    <Logo
+                        variant="vertical"
+                        colored
+                        className="w-[300px] mx-auto"
+                    />
                 </header>
                 <main>{children}</main>
                 <footer>
