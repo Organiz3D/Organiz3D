@@ -9,8 +9,6 @@ export interface ProductCardProps {
 export default function ProductCard(props: ProductCardProps) {
     const { name, link, imagesUrl } = props;
 
-    console.log(name, link, imagesUrl);
-
     return (
         <a href={link} target="_blank" className="rounded-box">
             <figure className="hover-gallery rounded-[inherit]">
