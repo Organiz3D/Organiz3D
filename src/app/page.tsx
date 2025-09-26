@@ -12,7 +12,7 @@ export default function Home() {
         {
             "icon": faEtsy,
             "text": "Visiter la boutique Etsy",
-            "url": "https://www.etsy.com/fr/shop/Organiz3DFrance",
+            "url": "https://organiz3dfrance.etsy.com",
             "isPrimary": true,
         },
         {
