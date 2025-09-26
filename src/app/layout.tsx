@@ -48,9 +48,6 @@ export default function RootLayout({
                         reserved.
                     </p>
                 </footer>
-                <div id="ui-controls" className="fixed bottom-8 right-8 z-50">
-                    <ThemeSwitcher />
-                </div>
             </body>
         </html>
     );
