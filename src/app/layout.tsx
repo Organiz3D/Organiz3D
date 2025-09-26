@@ -2,6 +2,13 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { rubik } from "@/app/fonts";
 import Logo from "@/components/Logo";
+import {
+    faEtsy,
+    faInstagram,
+    faTiktok,
+    faPinterestP,
+} from "@fortawesome/free-brands-svg-icons";
+import Link from "@/components/Link";
 
 export const metadata: Metadata = {
     title: "Organiz3D",
@@ -27,10 +34,38 @@ export default function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {
+    const links = [
+        {
+            "icon": faEtsy,
+            "text": "Visiter la boutique Etsy",
+            "href": "https://organiz3dfrance.etsy.com",
+            "isPrimary": true,
+        },
+        {
+            "icon": faInstagram,
+            "text": "Instagram",
+            "href": "https://www.instagram.com/organiz3d_/",
+            "isPrimary": false,
+        },
+        {
+            "icon": faTiktok,
+            "text": "Tiktok",
+            "href": "https://www.tiktok.com/@organiz3d_",
+            "isPrimary": false,
+        },
+        {
+            "icon": faPinterestP,
+            "text": "Pinterest",
+            "href": "https://fr.pinterest.com/Organiz3D",
+            "isPrimary": false,
+        },
+    ];
+    const linksPrimary = links.filter((link) => link.isPrimary);
+    const linksSecondary = links.filter((link) => !link.isPrimary);
     return (
         <html lang="en">
             <body
-                className={`${rubik.variable} antialiased min-h-screen w-full sm:w-[500px] max-w-[500px] px-10 py-10 m-auto bg-base-100 text-base-content flex flex-col justify-between`}
+                className={`${rubik.variable} antialiased min-h-screen w-full px-10 py-10 m-auto bg-base-100 text-base-content flex flex-col items-center justify-between`}
             >
                 <header>
                     <h1 className="sr-only">Organiz3d</h1>
@@ -39,9 +74,28 @@ export default function RootLayout({
                         colored
                         className="w-full sm:w-[300px] max-w-[300px] mx-auto"
                     />
+                    <nav
+                        aria-label="Liens vers les réseaux sociaux et la boutique"
+                        className="flex justify-center mt-8"
+                    >
+                        <ul className="flex flex-wrap flex-col sm:w-[300px] justify-center gap-4">
+                            {linksPrimary.map((link, index) => (
+                                <li key={index}>
+                                    <Link {...link} target="_blank" />
+                                </li>
+                            ))}
+                            <div className="flex justify-center gap-4">
+                                {linksSecondary.map((link, index) => (
+                                    <li key={index}>
+                                        <Link {...link} target="_blank" />
+                                    </li>
+                                ))}
+                            </div>
+                        </ul>
+                    </nav>
                 </header>
-                <main>{children}</main>
-                <footer>
+                <main className="mt-8">{children}</main>
+                <footer className="mt-8">
                     <p className="text-center text-sm text-base-content/50">
                         &copy; {new Date().getFullYear()} Organiz3d. All rights
                         reserved.

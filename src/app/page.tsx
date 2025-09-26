@@ -1,65 +1,58 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faEtsy,
-    faInstagram,
-    faTiktok,
-    faPinterestP,
-} from "@fortawesome/free-brands-svg-icons";
-import clsx from "clsx";
+import ProductCard from "@/components/ProductCard";
+import { parseStringPromise } from "xml2js";
+import * as cheerio from "cheerio";
 
-export default function Home() {
-    const links = [
-        {
-            "icon": faEtsy,
-            "text": "Visiter la boutique Etsy",
-            "url": "https://organiz3dfrance.etsy.com",
-            "isPrimary": true,
-        },
-        {
-            "icon": faInstagram,
-            "text": "Instagram",
-            "url": "https://www.instagram.com/organiz3d_/",
-            "isPrimary": false,
-        },
-        {
-            "icon": faTiktok,
-            "text": "Tiktok",
-            "url": "https://www.tiktok.com/@organiz3d_",
-            "isPrimary": false,
-        },
-        {
-            "icon": faPinterestP,
-            "text": "Pinterest",
-            "url": "https://fr.pinterest.com/Organiz3D",
-            "isPrimary": false,
-        },
-    ];
+interface Product {
+    name: string;
+    link: string;
+    imagesUrl: string[];
+}
+
+export default async function Home() {
+    const products = await getProducts();
 
     return (
-        <nav
-            aria-label="Liens vers les réseaux sociaux et la boutique"
-            className="w-full"
-        >
-            <ul className="flex flex-col gap-[16px] ">
-                {links.map((link) => (
-                    <li key={link.text}>
-                        <a
-                            className={clsx(
-                                "btn btn-block btn-primary",
-                                !link.isPrimary && "btn-outline",
-                            )}
-                            href={link.url}
-                            target="_blank"
-                        >
-                            <FontAwesomeIcon
-                                icon={link.icon}
-                                className="size-[1.2em]"
-                            />
-                            {link.text}
-                        </a>
-                    </li>
+        <div>
+            <div className="w-full max-w-6xl grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+                {products.map((product, index) => (
+                    <ProductCard key={index} {...product} />
                 ))}
-            </ul>
-        </nav>
+            </div>
+        </div>
     );
+}
+
+export interface RssItem {
+    title: string[];
+    link: string[];
+    description: string[];
+    pubDate?: string[];
+    guid?: string[];
+}
+
+async function getProducts(): Promise<Product[]> {
+    const RSS_URL = "https://www.etsy.com/shop/Organiz3DFrance/rss";
+
+    const rssResponse = await fetch(RSS_URL, { next: { revalidate: 3600 } });
+
+    const rssText = await rssResponse.text();
+    const parsed = await parseStringPromise(rssText);
+    const items = parsed.rss.channel[0].item as RssItem[];
+
+    return items.map((item) => {
+        const name = item.title[0].trim();
+
+        const rawLink = item.link[0].trim();
+        const match = rawLink.match(/\/listing\/(\d+)/);
+        const listingId = match ? match[1] : null;
+        const link = listingId
+            ? `https://organiz3dfrance.etsy.com/listing/${listingId}`
+            : rawLink;
+
+        const description = item.description[0];
+        const $ = cheerio.load(description);
+        const image = $("img").attr("src") ?? "";
+
+        return { name, link, imagesUrl: [image, image] };
+    });
 }
