@@ -2,7 +2,6 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { rubik } from "@/app/fonts";
 import Logo from "@/components/Logo";
-import ThemeSwitcher from "@/components/ThemeSwitcher";
 
 export const metadata: Metadata = {
     title: "Organiz3D",
