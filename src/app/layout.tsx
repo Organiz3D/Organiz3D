@@ -72,13 +72,11 @@ export default function RootLayout({
                                     <Link {...link} target="_blank" />
                                 </li>
                             ))}
-                            <div className="flex justify-center gap-4">
-                                {linksSecondary.map((link, index) => (
-                                    <li key={index}>
-                                        <Link {...link} target="_blank" />
-                                    </li>
-                                ))}
-                            </div>
+                            {linksSecondary.map((link, index) => (
+                                <li key={index}>
+                                    <Link {...link} target="_blank" />
+                                </li>
+                            ))}
                         </ul>
                     </nav>
                 </header>

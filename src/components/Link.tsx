@@ -23,7 +23,7 @@ export default function Link(props: LinkProps) {
             {...otherProps}
         >
             <FontAwesomeIcon icon={icon} className="size-[1.2em]" />
-            {isPrimary && text}
+            {text}
         </a>
     );
 }
