@@ -47,18 +47,6 @@ export default function RootLayout({
             "href": "https://www.instagram.com/organiz3d_/",
             "isPrimary": false,
         },
-        {
-            "icon": faTiktok,
-            "text": "Tiktok",
-            "href": "https://www.tiktok.com/@organiz3d_",
-            "isPrimary": false,
-        },
-        {
-            "icon": faPinterestP,
-            "text": "Pinterest",
-            "href": "https://fr.pinterest.com/Organiz3D",
-            "isPrimary": false,
-        },
     ];
     const linksPrimary = links.filter((link) => link.isPrimary);
     const linksSecondary = links.filter((link) => !link.isPrimary);
