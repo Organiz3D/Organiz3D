@@ -5,8 +5,6 @@ import Logo from "@/components/Logo";
 import {
     faEtsy,
     faInstagram,
-    faTiktok,
-    faPinterestP,
 } from "@fortawesome/free-brands-svg-icons";
 import Link from "@/components/Link";
 
